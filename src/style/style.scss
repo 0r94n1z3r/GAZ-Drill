@@ -1,0 +1,147 @@
+@import '@/style/mixins.scss';
+@import url("/fonts/Segoe UI/stylesheet.css");
+
+body{
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+#app{
+    height: 100vh;
+}
+
+*::-webkit-scrollbar{
+    width: 4px;
+    height: 8px;
+
+    &-track{
+        background: #0042690F;
+    }
+
+    &-thumb{
+        background: #0042693D;
+        border-radius: 4px;
+    }
+}
+
+label.checkbox, label.radio{
+    display: flex;
+    padding-left: 22px;
+    position: relative;
+
+    input{
+        display: none;
+    }
+
+    span{
+        font-size: 12px;
+
+        &::before{
+            @include pseudo-absolute;
+        }
+
+        &::before{
+            left: 0;
+            top: 0;
+            height: 16px;
+            width: 16px;
+            border-radius: 4px;
+            border: 1px solid var(--bg-border);
+            background: transparent;
+        }
+    }
+
+    &.checkbox {
+        input:checked+span{
+            color: var(--typo-control-secondary);
+
+            &::before{
+                background: url(/img/checkbox.svg) var(--typo-control-secondary) center no-repeat;
+                border-color: var(--typo-control-secondary);
+                background-size: 78%;
+            }
+        }
+    }
+
+    &.radio{
+        span{
+            &::before{
+                border-radius: 50%;
+            }
+        }
+
+        input:checked+span::after{
+            @include pseudo-absolute;
+            height: 6px;
+            width: 6px;
+            top: 5px;
+            left: 5px;
+            border-radius: 50%;
+            background: var(--typo-control-ghost);
+        }
+    }
+}
+
+span.sub{
+    font-size: .6em;
+}
+
+table.table-default{
+    border-collapse: collapse;
+    // max-width: 1003px;
+
+    th,td{
+        &:not(:last-child){
+            border-right: 1px solid var(--bg-border);
+        }
+    }
+
+    thead{
+        tr{
+            border-bottom: 1px solid var(--typo-secondary);
+
+            th{
+                font-weight: 400;
+                white-space: nowrap;
+                padding: 18.25px 12px;
+
+                &:first-child{
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    tbody{
+        tr{
+            &:nth-child(2n){
+                background: var(--bg-control-ghost-hover);
+            }
+
+            td{
+                padding: 12px;
+            }
+        }
+    }
+}
+
+.cas-text-input{
+    height: 32px; 
+    border: 1px solid var(--bg-border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 9px;
+
+    transition: .3s;
+
+    &::placeholder{
+        color: #00203359;
+    }
+
+    &:focus{
+        border-color: var(--bg-border-focus);
+    }
+}
